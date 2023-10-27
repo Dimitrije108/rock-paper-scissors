@@ -1,12 +1,87 @@
-const computerSelection = getComputerChoice;
-const playerSelection = getPlayerChoice;
+
+//const playerSelection = getPlayerChoice;
+const rockBtn = document.querySelector('.rockBtn');
+const paperBtn = document.querySelector('.paperBtn');
+const scissorsBtn = document.querySelector('.scissorsBtn');
+const documentBody = document.querySelector('body');
+
+const roundResult = document.createElement('div');
+roundResult.style.margin = '20px 0px 20px 0px';
+documentBody.appendChild(roundResult);
+
+const displayPlayerScore = document.createElement('div');
+documentBody.appendChild(displayPlayerScore);
+let playerScore = 0;
+const displayComputerScore = document.createElement('div');
+documentBody.appendChild(displayComputerScore);
+let computerScore = 0;
+
+rockBtn.addEventListener('click', function() {
+    const playerSelection = 'Rock';
+    const computerSelection = getComputerChoice();
+    roundResult.textContent = playRound(playerSelection, computerSelection);
+    runningScore();
+    displayPlayerScore.textContent = 'Player score: ' + playerScore;
+    displayComputerScore.textContent = 'Computer score: ' + computerScore;
+    console.log(playerScore);
+    console.log(computerScore);
+});
+
+paperBtn.addEventListener('click', function() {
+    const playerSelection = 'Paper';
+    const computerSelection = getComputerChoice();
+    roundResult.textContent = playRound(playerSelection, computerSelection);
+    runningScore();
+    displayPlayerScore.textContent = 'Player score: ' + playerScore;
+    displayComputerScore.textContent = 'Computer score: ' + computerScore;
+    console.log(playerScore);
+    console.log(computerScore);
+});
+
+scissorsBtn.addEventListener('click', function() {
+    const playerSelection = 'Scissors';
+    const computerSelection = getComputerChoice();
+    roundResult.textContent = playRound(playerSelection, computerSelection);
+    runningScore();
+    displayPlayerScore.textContent = 'Player score: ' + playerScore;
+    displayComputerScore.textContent = 'Computer score: ' + computerScore;
+    console.log(playerScore);
+    console.log(computerScore);
+});
+
+function runningScore(){
+    if (roundResult.textContent.startsWith("You Win!") === true) {
+        playerScore += 1;
+    } else if (roundResult.textContent.startsWith("You Lose!") === true) {
+        computerScore += 1;
+    };
+
+    if (playerScore === 5) {
+        const finalResult = document.createElement('div');
+        finalResult.textContent = `You won the game ${playerScore} to ${computerScore}. Refresh the page to play again.`;
+        finalResult.style.margin = '20px 0px 20px 0px';
+        documentBody.appendChild(finalResult);
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+    } else if (computerScore === 5) {
+        const finalResult = document.createElement('div');
+        finalResult.textContent = `You lost the game ${playerScore} to ${computerScore}. Refresh the page to play again.`;
+        finalResult.style.margin = '20px 0px 20px 0px';
+        documentBody.appendChild(finalResult);
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+    };
+};
 
 
+/*
 function getPlayerChoice() {
     let input = prompt("Type in your choice: Rock, Paper or Scissors, to play a 5 round game vs computer");
     return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 }
-
+*/
 
 function getComputerChoice() {
     randomNumber = Math.floor(Math.random() * 3);
@@ -44,6 +119,8 @@ function playRound(playerSelection, computerSelection) {
     }
     }
 
+
+/*
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -73,9 +150,9 @@ function game() {
         return alert(`Draw! ${playerScore} to ${computerScore}`);
     }
 }
-
+*/
     
     
 
 
-console.log(game());
+//console.log(game());
